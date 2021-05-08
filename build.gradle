@@ -1,0 +1,36 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id "com.diffplug.gradle.spotless" version "3.27.0"
+}
+
+group = 'com.cowin'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+spotless {
+	java {
+		importOrder 'java', 'javax', 'org', 'com', ''
+		removeUnusedImports()
+		eclipse()
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.3.10.RELEASE'
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+}
+
+
+test {
+	useJUnitPlatform()
+}
